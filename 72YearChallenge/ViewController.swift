@@ -22,19 +22,23 @@ class ViewController: UIViewController {
     var num1=0
     let img=["20190101","20220202","20250303","20280404","20310505","20340606","20370707","20400808","20430909","20461010","20491111","20521212","20550101","20580202","20610303","20640404","20670505","20700606","20730707","20760808","20790909","20821010","20851111","20881212","20910101"]
     //放音樂
-    let player = AVPlayer(url: URL(string: "https://bit.ly/2Xs2oBF")!)
+    let player = AVPlayer(url: URL(string: "https://bit.ly/2IJH9r6")!)
     //原youtube  https://www.youtube.com/watch?v=rU1ouAKoPeI
     
     override func viewDidLoad() {
         super.viewDidLoad()
     player.play()
         time()
-        datePicker.locale=Locale(identifier: "zh_TW")
+        datePicker.locale=Locale(identifier: "zh_TW")//做中文化，不然DatePicker的格式會是英文的
         dateFormatter.dateFormat = "yyyy/MM/dd"
-        dateSlider.isContinuous=false
-        datePicker.isEnabled=false
+        dateSlider.isContinuous=false  //把DateSlider隱藏起來，不讓使用者點選
+        datePicker.isEnabled=false  //把DatePicker隱藏起來，不讓使用者點選
     }
-    func ticker(){
+    
+    //這裡是Switch Button的action
+    //打開->timer開始，Slider隱藏
+    //關掉->timer結束，Slider顯示
+    func ticker(){  //每秒換圖跟時間
         if num>=img.count{
            num=0
             switchtime(num2: num)
@@ -49,8 +53,6 @@ class ViewController: UIViewController {
     //將圖片命名為0 giel 1-13，加入imgList這個“字串“    //imgList.append(String(year) + "girl" + String(month))//切換 Autoplay 開關或開啟，與 Autoplay 相關的元件isEnable設為true ，提供給使用者操作
     
     //點選自動就能自動播放照片
-    
-    
     @IBAction func changeSwitch(_ sender: UISwitch) {
    if sender.isOn {
             time()
@@ -62,11 +64,12 @@ class ViewController: UIViewController {
         }
     
     }
+    //以下是Slider的action，主要就是讓sender的值做四捨五入，再把型態轉成Int
     @IBAction func dateSlider(_ sender: UISlider) {
     sender.value.round()
         num1=Int(sender.value)
-        pictureView.image = UIImage(named: img[num1])
-        print(num1)
+        pictureView.image = UIImage(named: img[num1])//變換照片
+        print(num1)  //可以不要理他，那只是我想看值
         switchtime(num2: num1)
 }
     
@@ -127,10 +130,11 @@ class ViewController: UIViewController {
             dateString = "2091/07/07"
         }
         let date = dateFormatter.date(from: dateString)
-        datePicker.date=date!
+        datePicker.date=date!   //設定DatePicker到我指定的時間
     }
+   //這邊在做變換圖片，會用到一開始宣告的陣列，如果num的值超過陣列的長度的話就會初始化，就是要讓照片循環播放
     override func viewDidDisappear(_ animated: Bool) {
-        timer?.invalidate()
+        timer?.invalidate()   //timer可是要取消掉的哦！不然會一直在背景執行
     }
 
 }

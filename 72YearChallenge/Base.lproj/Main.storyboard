@@ -29,7 +29,7 @@
                                     <!--2019-01-01 12:18:03 +0000-->
                                 </date>
                             </datePicker>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="72" translatesAutoresizingMaskIntoConstraints="NO" id="vyN-B5-dah">
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="11" minValue="0.0" maxValue="24" translatesAutoresizingMaskIntoConstraints="NO" id="vyN-B5-dah">
                                 <rect key="frame" x="88" y="588" width="239" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
